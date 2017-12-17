@@ -1,0 +1,93 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+ <h2>JS practice</h2>
+ 
+  age:<input id='age' type="text" value="18">
+ <button onclick="vote()">vote</button>
+ <button onclick="run()">run</button>
+ <button onclick="clock()">clock</button>
+ <p id="test"></p>
+ <p id="test1"></p>
+ <p id="demo"></p>
+ <p id="demo2"></p>
+ <p id="demo3"></p>
+	<script src="demo.js"></script>
+	<script>
+        function people(lastname,firstname,age,tittle) {
+       	this.lastname = lastname;
+       	this.firstname = firstname;
+       	this.age = age;
+       	this.tittle = tittle;
+       	// body...
+       }
+       var youki= new people('yang','hui',24,'boss');
+       people.prototype.dream = null ;
+       people.prototype.love = run ;
+       youki.dream = 'writer';
+       function run(){
+       	alert('youki wannna to run!');
+       	window.open('http://www.cctv.com')
+       }
+       	// body...
+       document.write(youki.dream);
+      var t = new Date();
+       var arr = new Array();
+       arr[0] = "周天";
+       arr[1] = "周1";
+       arr[2] = "周2";
+       arr[3] = "周3";
+       arr[4] = "周4";
+       arr[5] = "周5";
+       arr[6] = "周6";
+      console.log(arr[t.getDay()]);
+          function clock(){
+          	var t = new Date();
+      var h = t.getHours();
+      var m = t.getMinutes();
+      var s = t.getSeconds();
+      m =checktime(m);
+      s =checktime(s);
+      //console.log(h+m+s);
+      document.getElementById('demo2').innerHTML = h+':'+m+':'+s;
+          g = setInterval(function(){clock()},500);
+          }
+          function checktime(i){
+          	if (i<10){
+          	i = "0"+i;
+          	}
+          	return i;
+          }
+          var arr1 = ['volvo','bl','ff'];
+          arr2 = ['ss','ww','44s'];
+          //console.log(arr1.concat(arr2));
+          console.log(arr1.concat(arr2));
+          var arr3 = arr1.concat(arr2);
+          // console.log(arr1.join());
+          // console.log(arr1.pop());
+          // console.log(arr1.shift());
+          console.log(arr3.reverse());
+          var points = [40,100,1,5,25,10];
+          console.log(points.sort(function(a,b){return b -a;}));
+         // console.log(points.sort(function(a,b){return b -a;}));
+         var w=window.innerWidth || document.body.clientWidth || document.documentElement.Width;
+         var h =window.innerHeight || document.body.clientHeight || document.documentElement.Height;
+         document.getElementById('demo2').innerHTML ="浏览器的宽度"+":"+w+"gao"+':'+h;
+
+document.write("可用高度: " + screen.availHeight);
+           //window.location.assign('http://www.cctv.com');
+	</script>
+<script>
+    var a = [];
+for (let i = 0; i < 10; i++) {
+  a[i] = function () {
+  };
+    console.log(i);
+}
+a[6](); // 10
+</script>
+</body>
+</html>

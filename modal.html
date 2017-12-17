@@ -1,0 +1,119 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+      #box{
+      	width: 200px;
+      	height: 200px;
+      	background: #3f3;
+      	position: absolute;
+      	top: 100px;
+      	left: 200px;
+      }
+      #share {
+      	width: 150px;
+      	height: 200px;
+      	background: #3f3;
+      	position: absolute;
+      	top: 250px;
+      	left: -150px;
+      }
+      #share span {
+      	width: 20px;
+      	height: 80px;
+      	background: green;
+      	position: absolute;
+      	top: 80px;
+      	right: -20px;
+      }
+       .img {
+       	position: absolute;
+       	top: 0;
+       	left: 220px;
+
+       	width: 180px;
+       	height: 100px;
+       	background: red;
+       	filter: alpha(opacity:30);
+       	opacity: .3;
+       }
+	</style>
+	<script>
+	     var timer = null;
+          function go(){
+          	var odiv =document.getElementById('box');
+          	clearInterval(timer);
+          	timer =setInterval(function(){
+          		var speed = 3;
+          		if(odiv.offsetLeft>=300){
+          			clearInterval(timer);
+          		}else{
+
+          		odiv.style.left=odiv.offsetLeft+speed+"px";
+          		}
+          	},30)
+          }
+
+	</script>
+	<script>
+		window.onload=function(){
+			var share = document.getElementsByTagName('div')[1];
+              share.onmouseover=function(){
+              	start(0);
+              }
+               share.onmouseout=function(){
+              	goback(-150);
+              }
+		};
+	
+		//var span = document.getElementsByTagName('span');
+		function start(target){
+			//var share = document.getElementsByTagName('div')[1];
+			clearInterval(timer);
+		timer =setInterval(function(){
+			var speed= 0;
+			if(share.offsetLeft>target){
+				speed= -10;
+			}else{
+				speed = 10;
+			}
+			if(share.offsetLeft==target){
+				clearInterval(timer);
+			}else{
+
+			share.style.left=share.offsetLeft+speed+"px";
+			}
+		},30)
+		}
+				function goback(target){
+			//var share = document.getElementsByTagName('div')[1];
+			clearInterval(timer);
+		timer =setInterval(function(){
+			if(share.offsetLeft>target){
+				speed= -10;
+			}else{
+				speed = 10;
+			}
+			if(share.offsetLeft==target){
+				clearInterval(timer);
+			}else{
+
+			share.style.left=share.offsetLeft+speed+"px";
+			}
+		},30)
+		}
+	</script>
+</head>
+<body>
+<button  id = "btn" onclick="go()">go</button>
+    <div id="box">
+    </div>
+    	<div id="share">
+    		<span >分享到</span>
+    	</div>
+    	<div class="img">
+    		<img src="1.jpg" alt="">
+    	</div>
+</body>
+</html>

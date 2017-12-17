@@ -1,0 +1,44 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+            #box {
+            	width: 200px;
+            	height: 200px;
+            	background: #ccc;
+            	position: absolute;
+            	top: 200px;
+            	left: 20px;
+            }
+            .box {
+            	width: 1px;height: 300px;
+            	background: #111;
+            	position: absolute;
+            	top: 200px;
+            	left: 300px;
+            }
+	</style>
+
+	<script>
+         function go() {
+         	var timmer =null;
+         	odiv=document.getElementById('box');
+         	timmer= setInterval(function (){
+         		var speed =(300-odiv.offsetLeft)/10;
+         		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+         		odiv.style.left=odiv.offsetLeft+speed+"px";
+         		document.title=odiv.offsetLeft+','+speed;
+         		// body...
+         	},30)
+         	// body...
+         }
+	</script>
+</head>
+<body>
+<button onclick="go()">go</button>
+   <div id="box"></div>
+
+   <div class="box"></div>
+</body>
+</html>

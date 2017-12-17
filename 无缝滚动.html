@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+* {margin:0; padding:0;}
+#div1 {width:712px; height:108px; margin:100px auto; position:relative; background:red;overflow: hidden;}
+#div1 ul {position:absolute; left:0; top:0;}
+#div1 ul li {float:left; width:178px; height:108px; list-style:none;}
+#div1 ul li img {
+	width: 178px;
+	height: 108px;
+}
+</style>
+<script>
+window.onload=function ()
+{
+      var odiv=document.getElementById('div1');
+      oul=odiv.getElementsByTagName('ul')[0];
+      oli=oul.getElementsByTagName('li');
+       oul.innerHTML+=oul.innerHTML;
+	oul.style.width=oli[0].offsetWidth*oli.length+'px';
+	speed=-2;
+	function move(){
+       	if(oul.offsetLeft<-oul.offsetWidth/2){
+       		oul.style.left='0';
+       	}
+       	if(oul.offsetLeft>0){
+       		oul.style.left=-oul.offsetWidth/2+'px';
+       	}
+       	oul.style.left=oul.offsetLeft+speed+'px';
+       }
+       var timer = setInterval(move,30)
+       odiv.onmouseover=function(){
+       	clearInterval(timer);
+       }
+       odiv.onmouseout=function(){
+       	timer=setInterval(move,30);
+       }
+       var goleft=document.getElementsByTagName('a')[0];
+       var goright=document.getElementsByTagName('a')[1];
+       goleft.onclick=function(){
+       	speed=-2;
+       }
+       goright.onclick=function(){
+       	speed=2;
+       }
+}
+</script>
+</head>
+
+<body>
+<div id="div1">
+    <ul>
+    	<li><img src="image/1.jpg" /></li>
+    	<li><img src="image/2.jpg" /></li>
+    	<li><img src="image/3.jpg" /></li>
+    	<li><img src="image/4.jpg" /></li>
+    </ul>
+</div>
+<a href="javascript:(void)">向左</a>
+<a href="javascript:(void)">向右</a>
+</body>
+</html>
