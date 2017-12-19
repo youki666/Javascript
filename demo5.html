@@ -3,37 +3,78 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style>
-     div{
-             width: 100px;
-             height: 40px;
+     #div1 {
+             width: 420px;
+             height: 600px;
              margin: 10px;
              background: #3f3;
-             float: left;
-             opacity: .3;
-             filter: alpha(30);
-             border: 10px solid green;
-             font-size: 18px;
+     }
+     #div1 ul li {
+      width: 100px;
+      height: 100px;
+      list-style-type:none;
+       
+      margin: 10px;
+      float: left;
+      text-align: center;
+     }
+     #div1 .text {
+      clear: both;
+      text-align: center;
+      background: #ccc;
+      width: 200px;
+      height: 100px;
+      margin: 0 auto;
+     }
+     .active {
+     	background: yellow;
      }
 	</style>
 
 	<script>
             window.onload=function(){
-            	var btn=document.getElementsByTagName('input');
-            	btn.this
-            }
+            	var odiv=document.getElementById('div1');
+              oli=odiv.getElementsByTagName('li');
+              adiv=odiv.getElementsByTagName('div')[0];
+              for(var i=0;i<oli.length;i++){
+                 oli[i].index=i;
+                 var arr=[
+                       '快过年了！去哪玩','333','ggg','ttt','ppp','sss','aaa','www','qqq','ccc','jjj','kkk'
+                 ]
+                 oli[i].onmouseover=function(){
+                  for(var i=0;i<oli.length;i++){
+                    oli[i].className='';
+                  }
+                this.className='active';
+                adiv.innerHTML='<h2>'+(this.index+1)+'月活动'+'</h2>'+'<p>'+arr[this.index]+'</p>';
+                }
+              }
+
+            	}
 
 	</script>
 
 </head>
 <body>
-
-   <input type="button" value="教育">
-   <input type="button" value="科技">
-   <input type="button" value="出国">
-   <input type="button" value="访问">
-   <div>111</div>
-   <div>222</div>
-   <div>333</div>
-   <div>444</div>
+  <div id='div1'>
+       <ul>
+         <li><h2>1</h2><p>Jan</p></li>
+         <li><h2>2</h2><p>Feb</p></li>
+         <li><h2>3</h2><p>Mar</p></li>
+         <li><h2>4</h2><p>Apr</p></li>
+         <li><h2>5</h2><p>May</p></li>
+         <li><h2>6</h2><p>Jun</p></li>
+         <li><h2>7</h2><p>Jul</p></li>
+         <li><h2>8</h2><p>Aug</p></li>
+         <li><h2>9</h2><p>Sep</p></li>
+         <li><h2>10</h2><p>Oct</p></li>
+         <li><h2>11</h2><p>Nov</p></li>
+         <li><h2>12</h2><p>Dec</p></li>
+       </ul>
+       <div class="text">
+         <h2>1月活动</h2>
+         <p>快过年了！去哪玩</p>
+       </div>
+  </div>
 </body>
 </html>

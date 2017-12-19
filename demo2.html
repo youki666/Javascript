@@ -35,7 +35,20 @@
     <script>
              window.onload=function(){
             var odiv = document.getElementById('div1');
-            var alpha = 30;
+            var odiv2=document.getElementById('div2');
+            var tips=document.getElementById('tips');
+            tips.onmouseover=function(){
+              show();
+            }
+            tips.onmouseout=function(){
+              hide();
+            }
+                function show(){
+                  odiv2.style.display='block';
+                }
+                function hide(){
+                  odiv2.style.display='none';
+                }
 
 
 
