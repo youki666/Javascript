@@ -2,43 +2,71 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<style>
-            #box {
-            	width: 200px;
-            	height: 200px;
-            	background: #ccc;
-            	position: absolute;
-            	top: 200px;
-            	left: 20px;
-            }
-            .box {
-            	width: 1px;height: 300px;
-            	background: #111;
-            	position: absolute;
-            	top: 200px;
-            	left: 300px;
-            }
-	</style>
-
-	<script>
-         function go() {
-         	var timmer =null;
-         	odiv=document.getElementById('box');
-         	timmer= setInterval(function (){
-         		var speed =(300-odiv.offsetLeft)/10;
-         		speed=speed>0?Math.ceil(speed):Math.floor(speed);
-         		odiv.style.left=odiv.offsetLeft+speed+"px";
-         		document.title=odiv.offsetLeft+','+speed;
-         		// body...
-         	},30)
-         	// body...
-         }
-	</script>
+  <style>
+    #div1 {
+      width: 200px;
+      height: 200px;
+      background: #3f3;
+      position: absolute;
+      top: 200px;
+      left: -200px;
+    }
+        #div2 {
+      width: 200px;
+      height: 200px;
+      background: #3f3;
+      display: none;
+    }
+    #div1 span {
+      width: 30px;
+      height: 80px;
+      display: block;
+      background: #333;
+      position: absolute;
+      top: 100px;
+      right: -30px;
+    }
+  </style>
 </head>
 <body>
-<button onclick="go()">go</button>
-   <div id="box"></div>
+       <div id='div1'><span>分享到</span></div>
+       <input type="checkbox" id="tips">
+       <div id='div2'>5555</div>
+    <script>
+             window.onload=function(){
+            var odiv = document.getElementById('div1');
+            var alpha = 30;
 
-   <div class="box"></div>
+
+
+                odiv.onmouseover=function(){
+                  move(0);
+              }
+              odiv.onmouseout=function(){
+                  move(-200);
+              }
+              var  timer = null;
+               function move(target){
+               clearInterval(timer);
+               timer= setInterval(function(){
+                var speed=(target-odiv.offsetLeft)/6;
+                speed=speed>0?Math.ceil(speed):Math.floor(speed);
+                document.title=speed;
+                if(odiv.offsetLeft>target){
+                    speed=-10;
+                }else{
+                  speed=10;
+                }
+                if(odiv.offsetLeft==target){
+                  clearInterval(timer);
+                }else{
+                  odiv.style.left=odiv.offsetLeft+speed+'px';
+                }
+
+                },30)
+               }
+
+           }
+    </script>
 </body>
 </html>
