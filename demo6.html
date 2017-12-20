@@ -1,0 +1,142 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+
+	</style>
+
+<!-- 	<script>
+            window.onload=function(){
+              setInterval(function(){
+                var d =new Date();
+                 h=d.getHours();
+                 m=d.getMinutes();
+                 s=d.getSeconds();
+                 check(m);
+                 check(s);
+                 var t=h+':'+m+':'+s;
+
+                 function check(n){
+                  if(n<10){
+                    return '0'+n;
+                  }else {
+                    return ''+n;
+                  }
+                 }
+ 
+        document.title=t;
+              },500)
+
+            	}
+
+	</script> -->
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #container {
+       width: 860px;
+       height: 360px;
+      border: 1px solid green;
+      margin:  100px auto;
+    }
+    #container ul {
+      list-style: none;
+      float: left;
+      width: 200px;
+      height: 360px;
+      background: #ccc;
+    }
+     #container ul li {
+      width: 200px;
+      height: 30px;
+     }
+
+     #content {
+      width: 560px;
+      height: 360px;
+      float: left;
+
+      margin-left: 10px;
+     
+      overflow: hidden;
+     }
+     #content div{
+      width: 560px;
+      height: 360px;
+      display: none;
+     }
+     .active {
+      background: #3f3;
+     }
+
+  </style>
+</head>
+<body>
+   <div id="container">
+     <ul>
+       <li><a href="#">1</a></li>
+       <li><a href="#">2</a></li>
+       <li><a href="#">3</a></li>
+       <li><a href="#">4</a></li>
+       <li><a href="#">5</a></li>
+       <li><a href="#">6</a></li>
+       <li><a href="#">7</a></li>
+       <li><a href="#">8</a></li>
+     </ul>
+     <div id="content">
+       <div class="div1" style="background: orange">1</div>
+       <div class="div2" style="background: green">2</div>
+       <div class="div3" style="background: red">3</div>
+       <div class="div4" style="background: navy">4</div>
+       <div class="div4" style="background: orange">5</div>
+       <div class="div4" style="background: red">6</div>
+       <div class="div4" style="background: navy">7</div>
+       <div class="div4" style="background: green">8</div>
+     </div>
+   </div>
+   <script>
+     window.onload=function(){
+      var div=document.getElementById('container');
+      oli=div.getElementsByTagName('li');
+      con=document.getElementById('content');
+      odiv=con.getElementsByTagName('div');
+        for(var i=0;i<oli.length;i++){
+            oli[i].index=i;
+          oli[i].onmouseover=function(){
+            clearTimeout(timer);
+            for(var i=0;i<oli.length;i++){
+              oli[i].className='';
+                 odiv[i].style.display='none';
+            }
+            this.className='active';
+            odiv[this.index].style.display='block';
+          }
+            oli[i].onmouseout=function(){
+            timer = setTimeout(function(){
+             for(var i=0;i<oli.length;i++){
+              oli[i].className='';
+                 odiv[i].style.display='none';
+            }
+          },500)
+          }
+          odiv[i].onmouseover=function(){
+            clearTimeout(timer);
+          }
+          odiv[i].onmouseout=function(){
+            timer=setTimeout(function(){
+              for(var i=0;i<odiv.length;i++){
+               odiv[i].style.display='none';
+                oli[i].className='';
+            }
+            })
+          }
+        }
+
+     }
+   </script>
+</body>
+</html>
