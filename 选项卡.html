@@ -3,22 +3,38 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style>
-     #div1 div{
-             width: 100px;
-             height: 80px;
-             margin: 10px;
-             background: #3f3;
-     }
+
      .active {
      	background: yellow;
+      outline: none;
+      border-bottom: 1px solid red;
+     }
+     #div2 {
+     width: 300px;
+     height: 160px;
+     margin: 10px;
+     overflow: hidden;
+     }
+     #div2 div {
+      width: 300px;
+     height: 160px;
+    background: #3f3;
+     }
+    #div2 div a {
+        display: block;
+        text-decoration: none;
+        width: 300px;
+        height: 20px;
+        line-height: 20px;
      }
 	</style>
 
 	<script>
             window.onload=function(){
-            	var odiv=document.getElementById('div1')
-            	var btn=odiv.getElementsByTagName('input');
-            	var adiv=odiv.getElementsByTagName('div');
+              var odiv1=document.getElementById('div1')
+            	var odiv2=document.getElementById('div2')
+            	var btn=odiv1.getElementsByTagName('input');
+            	var adiv=odiv2.getElementsByTagName('div');
             	 for(var i=0;i<btn.length;i++){
             	 	btn[i].index=i;
  	            	btn[i].onmouseover=function(){
@@ -43,10 +59,22 @@
    <input type="button" value="科技">
    <input type="button" value="出国">
    <input type="button" value="访问">
-   <div>111</div>
-   <div>222</div>
+    <div id='div2'>
+    <div>
+        <a href="#">30元星巴克券</a>
+        <a href="#">全球狂欢，圣诞低至3免1</a>
+        <a href="#">大牌低至每满199减100</a>
+        <a href="#">居家圣诞京喜好物3件7折</a>
+    </div>
+   <div>
+     <a href="#">西宁本地仓开仓公告</a>
+     <a href="#">大家电订单超期自动取消公告</a>
+     <a href="#">西宁本地仓开仓公告</a>
+     <a href="#">西宁本地仓开仓公告</a>
+   </div>
    <div>333</div>
    <div>444</div>
+    </div>
   </div>
 </body>
 </html>
