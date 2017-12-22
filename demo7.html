@@ -1,0 +1,98 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+     div{
+      width: 200px;
+      height: 50px;
+      margin: 10px;
+      border: 10px solid black;
+      background:#3f3;
+      text-align: center;
+      float: left;
+      font-size: 14px;
+      opacity: .3;
+     filter: alpha(30);
+    }
+  </style>
+</head>
+<body>
+
+       <div id='div1'>1</div>
+       <div id='div2'>2</div>
+       <div id='div3'>3</div>
+       <div id='div4'>4</div>
+
+  <script>
+    window.onload=function(){
+     // var odiv=document.getElementsByTagName('div');
+      var odiv1=document.getElementById('div1');
+      var odiv2=document.getElementById('div2');
+      var odiv3=document.getElementById('div3');
+      var odiv4=document.getElementById('div4');
+
+        odiv1.onmouseover=function(){
+          start(this,'width',500);
+        }
+        odiv1.onmouseout=function(){
+          start(this,'width',200);
+        }
+        odiv2.onmouseover=function(){
+          start(this,'height',500);
+        }
+        odiv2.onmouseout=function(){
+          start(this,'height',50);
+        }
+        odiv3.onmouseover=function(){
+          start(this,'fontSize',24);
+        }
+        odiv3.onmouseout=function(){
+          start(this,'fontSize',14);
+        }
+        odiv4.onmouseover=function(){
+          start(this,'opacity',100);
+        }
+        odiv4.onmouseout=function(){
+          start(this,'opacity',180);
+        }
+
+
+     }
+
+     function start(obj,attr,target){
+        clearInterval(obj.timer);
+       obj.timer=setInterval(function(){
+        var cur=0;
+        if(cur=='opacity'){
+            cur=Math.round(parseFloat(getStyle(obj,attr))*100);
+        }else{
+           cur= parseInt(getStyle(obj,attr))
+        }
+        var speed=(target-cur)/6;
+       // var cur=parseInt(getStyle(obj,'height'));
+        speed=speed>0?Math.ceil(speed):Math.floor(speed);//缓冲运动速度取整
+          if(target==cur){
+            clearInterval(obj.timer)
+          }else{
+            if(attr=='opacity'){
+            obj.style.filter='alpha(opacity:'+(cur+speed)+')';
+            obj.style.opacity=(cur+speed)/100;
+            document.title=obj.style.opacity;
+          }else{
+            obj.style[attr]=cur+speed+'px';
+           }
+          }
+        },30)
+
+     }
+     function getStyle(obj,name){
+              if(obj.currentStyle){
+                return obj.currentStyle[name];
+              }else{
+                return getComputedStyle(obj,false)[name];
+              }
+     }
+  </script>
+</body>
+</html>

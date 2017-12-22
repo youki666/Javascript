@@ -11,6 +11,7 @@
              float: left;
              opacity: .3;
              filter: alpha(30);
+
      }
 	</style>
 
@@ -41,7 +42,7 @@
            	obj.alpha+=speed;
            	obj.style.filter='alpha(opacity:'+obj.alpha+')';
            	obj.style.opacity=obj.alpha/100;
-           	document.title=obj.style.width;
+           	document.title=obj.style.opacity;
            }
        },30)
        }
