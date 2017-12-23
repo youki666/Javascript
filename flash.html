@@ -1,0 +1,253 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		background:#ccc;
+	}
+         .play {
+         	position: absolute;
+         	top: 50%;
+         	left: 50%;
+         	margin-top: -160px;
+         	margin-left: -200px;
+         }
+		#flash .big-pic {
+             list-style: none;
+             width: 400px;
+             height: 320px;
+             position: relative;
+		}
+		#flash .big-pic .mark_left {
+			display: block;
+			width: 200px;
+			height: 320px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: green;
+			opacity: 0;
+			z-index: 3000;
+		}
+
+		#flash .big-pic .mark_right {
+			display: block;
+			width: 200px;
+			height: 320px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: red;
+			opacity: 0;
+			z-index: 3000;
+		}
+		#flash .big-pic .text {
+			position: absolute;
+			top: 280px;
+			left: 20px;
+			color:white;
+			z-index: 998;
+			opacity: .3;
+		}
+		#flash .big-pic .pre {
+			position: absolute;
+			top:130px;
+			left: 10px;
+			width: 60px;
+			height: 60px;
+			background:url(image/btn.gif) no-repeat 0 0;
+			z-index: 3001;
+			cursor: pointer;
+			opacity: 0;
+		}
+		#flash .big-pic .next {
+			position: absolute;
+			top:130px;
+			right: 10px;
+			width: 60px;
+			height: 60px;
+			background:url(image/btn.gif) no-repeat 0 -60px;
+			z-index: 3001;
+			cursor: pointer;
+			opacity: 0;
+		}
+		#flash .big-pic li {
+			width: 400px;
+			height: 320px;
+			z-index: 0;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		#flash .big-pic li img {
+			width: 400px;
+			height: 320px;
+			
+		}
+        #flash .small-pic {
+        	height: 94px;
+        	width: 380px;
+        	top: 7px;
+            left: 10px;
+        	position: relative;
+        	overflow: hidden;
+
+        }
+        #flash .small-pic ul{
+        	position: absolute;
+        	top: 0;
+        	left:0;
+        	list-style:none;
+        	height: 94px;
+        }
+        #flash .small-pic ul li{
+        	float: left;
+        	width: 120px;
+        	height: 94px;
+        	opacity: .6;
+        	padding-right: 10px;
+        }
+        .small-pic ul li img {
+        	width: 120px;
+        	height: 94px;
+        }
+	</style>
+</head>
+<body>
+	<div id='flash' class="play">
+        <ul class="big-pic">
+           <div class="pre"></div>
+           <div class="next"></div>
+           <a  class='mark_left' href="javascript:;"></a>
+           <a  class='mark_right' href="javascript:;"></a>
+           <div class="text">鹦鹉学舌</div>
+        	<li style="z-index:1"><img src="image/1.png" alt=""></li>
+        	<li><img src="image/2.jpg" alt=""></li>
+        	<li><img src="image/3.jpg" alt=""></li>
+        	<li><img src="image/4.jpg" alt=""></li>
+        	<li><img src="image/5.jpg" alt=""></li>
+        	<li><img src="image/6.jpg" alt=""></li>
+        </ul>
+        <div class="small-pic">
+        	<ul>
+        		<li><img src="image/1.png" alt=""></li>
+        		<li><img src="image/2.jpg" alt=""></li>
+        	    <li><img src="image/3.jpg" alt=""></li>
+        	    <li><img src="image/4.jpg" alt=""></li>
+        	    <li><img src="image/5.jpg" alt=""></li>
+        	    <li><img src="image/6.jpg" alt=""></li>
+        	</ul>
+        </div>
+	</div>
+	<script src='move.js'></script>
+	<script>
+		function getByclass(oParent,sClass) {
+			var ele=document.getElementsByTagName('*');
+			var result=[];
+			for(var i=0;i<ele.length;i++){
+				if(ele[i].className==sClass){
+					result.push(ele[i]);
+				}
+			}
+			return result;
+		}
+		window.onload=function(){
+			var odiv=document.getElementById('flash');
+			var btnPre=getByclass(odiv,'pre')[0];
+			console.log(btnPre);
+			var btnNext=getByclass(odiv,'next')[0];
+			var markLeft=getByclass(odiv,'mark_left')[0];
+			var markRight=getByclass(odiv,'mark_right')[0];
+			var odivsmall=getByclass(odiv,'small-pic')[0];
+			var text=getByclass(odiv,'text')[0];
+			var oul=odivsmall.getElementsByTagName('ul')[0];
+			var oli=odivsmall.getElementsByTagName('li');
+			var odivbig=getByclass(odiv,'big-pic')[0];
+			var ali=odivbig.getElementsByTagName('li');
+			var nowindex=2;
+			var now=0;
+			var arr=['鹦鹉学舌','微软浏览器','Operea','Apple','罗生门','太阳'];
+			oul.style.width=oli[0].offsetWidth*oli.length+'px';
+			btnPre.onmouseover=markLeft.onmouseover=function(){
+				start(btnPre,'opacity',200);
+				//console.log('btnPre')
+			}
+			btnPre.onmouseout=markLeft.onmouseout=function(){
+				start(btnPre,'opacity',0);
+			}
+			btnNext.onmouseover=markRight.onmouseover=function(){
+				start(btnNext,'opacity',200);
+				console.log('btnPre')
+			}
+			btnNext.onmouseout=markRight.onmouseout=function(){
+				start(btnNext,'opacity',0);
+			}
+			//大图切换
+			for(var i=0;i<oli.length;i++){
+				oli[i].index=i;
+				oli[i].onclick=function(){
+					if(this.index==now)return;
+					now=this.index;
+					tab();
+				};
+				oli[i].onmouseover=function(){
+					start(this,'opacity',300);
+				}
+				oli[i].onmouseout=function(){
+					if(this.index!=now){
+
+				    start(this,'opacity',60);
+					}
+				}
+				function tab(){
+					ali[now].style.zIndex= nowindex++;
+                      text.innerHTML='<p>'+arr[now]+'</p>';
+                      for(var i=0;i<oli.length;i++){
+                      	start(oli[i],'opacity',60);
+                      }
+                      start(oli[now],'opacity',300);
+					ali[now].style.height=0;
+
+					start(ali[now],'height',320);
+					if(now==0){
+						start(oul,'left',0)
+					}else if(now==oli.length-1){
+						start(oul,'left',-(now-2)*oli[0].offsetWidth)
+					}else{
+
+					start(oul,'left',-(now-1)*oli[0].offsetWidth);
+					}
+				}
+				btnPre.onclick=function(){
+					 now--;
+					 if(now==-1){
+					 	now=oli.length-1;
+					 }
+					 tab();
+				}
+				btnNext.onclick=function(){
+                     now++;
+                     if(now==oli.length){
+                     	now=0;
+                     }
+                     tab();
+				}
+			}
+
+		    var timer=setInterval(btnNext.onclick,2000);
+		    odiv.onmouseover=function(){
+		    	clearInterval(timer);
+		    }
+		    odiv.onmouseout=function(){
+		    	timer=setInterval(btnNext.onclick,2000);
+		    }
+		}
+	</script>
+</body>
+</html>

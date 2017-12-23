@@ -1,0 +1,91 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+        #div1 {
+        	width: 102px;
+			height: 102px;
+			background: #3f3;
+			border-radius: 50%;
+			position: absolute;
+        }
+		div {
+			width: 10px;
+			height: 10px;
+			background: #3f3;
+			border-radius: 50%;
+			position: absolute;
+		}
+	</style>
+	<script>
+           window.onload=function(){
+                 document.onkeydown=function(ev){
+             	var oevent= ev||event;
+                   // alert(oevent.keyCode);ctrlKey;shiftKey;altKey
+                    var odiv=document.getElementById('div1');
+                    if(oevent.keyCode=='37'&&oevent.ctrlKey){
+                    	odiv.style.left=odiv.offsetLeft-10+'px';
+                    }else if(oevent.keyCode=='39'){
+                    	odiv.style.left=odiv.offsetLeft+10+'px';
+                    }else if(oevent.keyCode=='38'){
+                    	odiv.style.top=odiv.offsetTop-10+'px';
+                    }else if(oevent.keyCode=='40'){
+                    	odiv.style.top=odiv.offsetTop+10+'px';
+                    }
+                 }
+                  document.oncontextmenu=function(){
+                  	//return false;
+
+                  }
+
+
+           }
+	</script>
+	<script>
+		document.onmousemove=function(ev){
+
+			var oevent= ev||event;
+			var odiv=document.getElementsByTagName('div');
+			var pos=getPos(oevent);
+
+			for(var i=odiv.length-1;i>0;i--){
+				console.log(pos.x+pos.y);
+               odiv[i].style.left=odiv[i-1].offsetLeft+'px';
+               odiv[i].style.top=odiv[i-1].offsetTop+'px';
+			}
+             odiv[0].style.left=pos.x+'px';
+               odiv[0].style.top=pos.y+'px';
+		}
+		   function getPos(ev){
+
+			var scrollTop=document.documentElement.scrollTop ||document.body.scrollTop;
+
+			var scrollLeft=document.documentElement.scrollLeft ||document.body.scrollLeft;
+
+			return {x: ev.clientX+scrollLeft,y: ev.clientY+scrollTop};
+
+		}
+	</script>
+</head>
+<body>
+	<div id='div1'></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+
+</body>
+</html>
